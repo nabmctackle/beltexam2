@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add A Job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Add a Job</h1>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/loggedin" method="GET">
+            <input type=submit value="go back">
+        </form>
+    <div>
+        <form action="/addingtrip", method='POST'>
+        <label for="desc"> Destination</label>
+        <input type="text" name="desc" id = "desc">
+        <label for="plan">Plan</label>
+        <input type="text" name="plan" id = "plan">
+        <label for="ts1"> Start(MM-DD-YYYY)</label>
+        <input type="text" name="ts1" id ="ts1">
+        <input type="text" name="ts2" id ="ts2">
+        <input type="text" name="ts3" id ="ts3">
+        <label for ="te1">End(MM-DD-YYYY)</label>
+        <input type="text" name="te1" id="te1">
+        <input type="text" name="te2" id ="te2">
+        <input type="text" name="te3" id ="te3">
+        <input type=submit value="plan it!">
+        </form>
+    </div>
+</body>
+</html>

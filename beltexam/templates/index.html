@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>regiform</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Welcome to trip buddy</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1>Sign up!</h1>
+        <form action="/register" method="POST">
+        <label for="f_name">First Name</label>
+        <input type="text" id="f_name" name="f_name">
+        <label for="l_name">Last name</label>
+        <input type="text" id="l_name" name="l_name">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email">
+        <label for="pw">Password</label>
+        <input type="password" id="pw" name="pw">
+        <label for="pwc">Confirm Password</label>
+        <input type="password" id="pwc" name="pwc">
+        <input type="submit" value="submit">
+        </form>
+
+        <h1>Log in</h1>
+        <div>
+            <form action="/login" method="POST">
+                <label for="liemail">Email</label>
+                <input type="text" id="liemail" name="liemail">
+                <label for="lipw">Password</label>
+                <input type="password" id="lipw" name="lipw">
+                <input type="submit" value="log in">
+            </form>
+        </div>
+
+    </body>
+
+</html>

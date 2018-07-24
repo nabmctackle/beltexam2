@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{name}}'s wall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Welcome {{name}}</h1>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <form action="/logout" method="POST">
+        <input type="submit" value="logout">
+    </form>
+    <h2>Your trip schedule</h2>
+    <table>
+            <tr>
+                <th>Description</th>
+                <th>Start</th>
+                <th>end</th>
+                <th>Plan</th>
+                <th>action</th>
+            </tr>
+            {% for x in mytripinfo %}
+            <tr>
+                <td><a href="/viewtrip/{{x['tripid']}}">{{x['description']}}</a></td>
+                <td>{{x['ts']}}</td>
+                <td>{{x['te']}}</td>
+                <td>{{x['plan']}}</td>
+                <td>
+                    <form action="/leaveparty" method="POST">
+                        <input type=hidden name='partyid' value="{{x['pid']}}">
+                        <input type=submit value="cancel">
+                    </form>
+                    {% if x['planner'] ==session['id'] %}
+                    <form action="/canceltrip" method="POST">
+                        <input type=hidden name='tripid' value="{{x['tripid']}}">
+                        <input type=submit value="delete">
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    <h2>Other Events</h2>
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Start</th>
+            <th>end</th>
+            <th>action</th>
+        </tr>
+        {% for i in loginfo %}
+        <tr>
+            <td><a href="/viewtrip/{{i['id']}}">{{i['description']}}</a></td>
+            <td>{{i['ts']}}</td>
+            <td>{{i['te']}}</td>
+            <td>
+                <form action="/joinparty" method="POST">
+                    <input type=hidden name='tripid' value="{{i['id']}}">
+                    <input type=submit value="join">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    
+</body>
+</html>

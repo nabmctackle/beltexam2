@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>view job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <form action="/logout" method="POST">
+        <input type="submit" value="logout">
+    </form>
+    <form action="/loggedin" method="GET">
+        <input type=submit value="go back">
+    </form>
+    <h1>{{tripinfo[0]['description']}}</h1>
+    <h3>planned by: {{tripinfo[0]['f_name']}} {{tripinfo[0]['l_name']}}</h3>
+    <h3>Description:{{tripinfo[0]['plan']}}</h3>
+    <h3> Travel start: {{tripinfo[0]['ts']}}</h3>
+    <h3>travel end: {{tripinfo[0]['te']}}</h3>
+
+
+    <h1>Other users Joining the trip</h1>
+    {% for i in partyinfo %}
+    <h3>{{i['f_name']}} {{i['l_name']}}</h3>
+    {% endfor %}
+    
+</body>
+</html>
